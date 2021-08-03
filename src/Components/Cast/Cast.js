@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
-import { defaultUrl, key } from '../../params.json';
+import BASE_IMAGE_URL from '../../constants';
 
 import './Cast.scss';
 
@@ -23,7 +23,7 @@ const Cast = () => {
             {casts.map(({ cast_id, name, profile_path }) => (
               <li key={cast_id} className="additional-item">
                 <img
-                  src={`${defaultUrl}/${profile_path}?api_key=${key}`}
+                  src={`${BASE_IMAGE_URL}/${profile_path}`}
                   alt={name}
                   className="additional-img"
                 />

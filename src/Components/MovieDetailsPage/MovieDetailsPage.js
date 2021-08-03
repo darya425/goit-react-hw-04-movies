@@ -8,7 +8,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
-import { defaultUrl, key } from '../../params.json';
+import BASE_IMAGE_URL from '../../constants';
 
 import './MovieDetailsPage.scss';
 
@@ -39,7 +39,7 @@ const MovieDetalisPage = () => {
           </button>
           <div className="wrapper-movie">
             <img
-              src={`${defaultUrl}/${movie.poster_path}?api_key=${key}`}
+              src={`${BASE_IMAGE_URL}/${movie.poster_path}`}
               alt={movie.title}
               className="movie-img"
             />
@@ -70,14 +70,24 @@ const MovieDetalisPage = () => {
             </div>
           </div>
 
-          <NavLink to={`${url}/cast`}>
+          <NavLink
+            to={{
+              pathname: `${url}/cast`,
+              state: { from: location?.state?.from },
+            }}
+          >
             <h2 className="additional-title">Actors and actresses</h2>
           </NavLink>
           <Route path="/movies/:movieId/cast">
             <Cast />
           </Route>
 
-          <NavLink to={`${url}/reviews`}>
+          <NavLink
+            to={{
+              pathname: `${url}/reviews`,
+              state: { from: location?.state?.from },
+            }}
+          >
             <h2 className="additional-title">Reviews</h2>
           </NavLink>
           <Route path="/movies/:movieId/reviews">

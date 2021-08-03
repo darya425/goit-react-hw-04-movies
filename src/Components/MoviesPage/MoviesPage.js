@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch, useLocation } from 'react-router-dom';
+import { Link, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
-import { defaultUrl, key } from '../../params.json';
+import BASE_IMAGE_URL from '../../constants';
+import cat from './maybe-it-is-cat.jpg';
 
 import './MoviesPage.scss';
 
 const MoviesPage = () => {
   const location = useLocation();
+  const history = useHistory();
   const { url } = useRouteMatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [query, setQuery] = useState('');
@@ -17,9 +19,9 @@ const MoviesPage = () => {
       return;
     }
 
-    fetchShelMovies
-      .fetchSearchMovie(searchQuery)
-      .then(({ results }) => setMovie(results));
+    fetchShelMovies.fetchSearchMovie(searchQuery).then(({ results }) => {
+      setMovie(results);
+    });
   }, [searchQuery]);
 
   const handleChange = e => {
@@ -30,7 +32,15 @@ const MoviesPage = () => {
     e.preventDefault();
 
     setSearchQuery(query);
+    onQueryChange(query);
     setQuery('');
+  };
+
+  const onQueryChange = query => {
+    history.push({
+      pathname: location.pathname,
+      search: `query=${query}`,
+    });
   };
 
   return (
@@ -57,8 +67,8 @@ const MoviesPage = () => {
               <img
                 src={
                   poster_path !== null
-                    ? `${defaultUrl}/${poster_path}?api_key=${key}`
-                    : 'https://cdn.pixabay.com/photo/2018/01/28/14/25/kot-3113797_960_720.jpg'
+                    ? `${BASE_IMAGE_URL}/${poster_path}`
+                    : cat
                 }
                 alt={title}
                 className="img"

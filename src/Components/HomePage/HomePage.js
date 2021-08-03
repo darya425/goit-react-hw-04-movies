@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
-import { defaultUrl, key } from '../../params.json';
+import BASE_IMAGE_URL from '../../constants';
 
 import './HomePage.scss';
 
@@ -24,7 +24,7 @@ const HomePage = () => {
             to={{ pathname: `${url}movies/${id}`, state: { from: location } }}
           >
             <img
-              src={`${defaultUrl}/${backdrop_path}?api_key=${key}`}
+              src={`${BASE_IMAGE_URL}/${backdrop_path}`}
               alt={title}
               className="img"
             />
