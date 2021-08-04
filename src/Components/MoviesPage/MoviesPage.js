@@ -3,6 +3,7 @@ import { Link, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
 import BASE_IMAGE_URL from '../../constants';
 import cat from './maybe-it-is-cat.jpg';
+import queryString from 'query-string';
 
 import './MoviesPage.scss';
 
@@ -10,19 +11,18 @@ const MoviesPage = () => {
   const location = useLocation();
   const history = useHistory();
   const { url } = useRouteMatch();
-  const [searchQuery, setSearchQuery] = useState('');
   const [query, setQuery] = useState('');
   const [movies, setMovie] = useState([]);
 
   useEffect(() => {
-    if (searchQuery === '') {
-      return;
-    }
+    const searchQuery = queryString.parse(location.search).query;
 
-    fetchShelMovies.fetchSearchMovie(searchQuery).then(({ results }) => {
-      setMovie(results);
-    });
-  }, [searchQuery]);
+    if (searchQuery) {
+      fetchShelMovies.fetchSearchMovie(searchQuery).then(({ results }) => {
+        setMovie(results);
+      });
+    }
+  }, [location.search]);
 
   const handleChange = e => {
     setQuery(e.currentTarget.value);
@@ -31,7 +31,6 @@ const MoviesPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    setSearchQuery(query);
     onQueryChange(query);
     setQuery('');
   };
