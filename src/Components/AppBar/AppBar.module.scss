@@ -1,0 +1,10 @@
+@import '../../sass/main.scss';
+
+.header {
+  @include flex-center-vert;
+
+  min-height: 80px;
+  margin-bottom: 16px;
+
+  border-bottom: 2px solid $secondary-color;
+}

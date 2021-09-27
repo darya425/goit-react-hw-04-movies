@@ -8,12 +8,13 @@ import {
   useLocation,
 } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
-import BASE_IMAGE_URL from '../../constants';
-
-import './MovieDetailsPage.scss';
 
 import Cast from '../Cast';
 import Reviews from '../Reviews';
+import BASE_IMAGE_URL from '../../constants';
+import cat from '../../img/maybe-it-is-cat.jpg';
+
+import styles from './MovieDetailsPage.module.scss';
 
 const MovieDetalisPage = () => {
   const location = useLocation();
@@ -33,67 +34,77 @@ const MovieDetalisPage = () => {
   return (
     <>
       {movie && (
-        <>
-          <button className="btn" type="button" onClick={onGoBack}>
+        <div className={styles.wrapper}>
+          <button className={styles.btn} type="button" onClick={onGoBack}>
             Back
           </button>
-          <div className="wrapper-movie">
+          <div className={styles.wrapperMovieDetails}>
             <img
-              src={`${BASE_IMAGE_URL}/${movie.poster_path}`}
+              src={
+                movie.poster_path !== null
+                  ? `${BASE_IMAGE_URL}/${movie.poster_path}`
+                  : cat
+              }
               alt={movie.title}
-              className="movie-img"
+              className={styles.detailsImg}
             />
-            <div className="info-wrapper">
-              <h2 className="movie-title">{movie.title}</h2>
-              <p className="movie-info">
+            <div className={styles.infoWrapper}>
+              <h2 className={styles.infoTitle}>{movie.title}</h2>
+              <p className={styles.detailsInfo}>
                 Rating: {movie.vote_average} &#11088;
               </p>
-              <p className="movie-info">
+              <p className={styles.detailsInfo}>
                 Release date:
-                <span className="info-text"> {movie.release_date}</span>
+                <span className={styles.detailsText}>
+                  {' '}
+                  {movie.release_date}
+                </span>
               </p>
-              <p className="movie-text">{movie.overview}</p>
-              <div className="genres-wrapper">
-                <h3 className="genres-title">Genres:</h3>
-                <ul className="genres">
+              <p className={styles.infoText}>{movie.overview}</p>
+              <div className={styles.genresWrapper}>
+                <h3 className={styles.genresTitle}>Genres:</h3>
+                <ul className={styles.genres}>
                   {movie.genres.map(({ id, name }) => (
-                    <li key={id} className="genres-item">
+                    <li key={id} className={styles.genresItem}>
                       {name} /
                     </li>
                   ))}
                 </ul>
               </div>
-              <p className="genres-time">
+              <p className={styles.genresTime}>
                 Runtime:
-                <span className="time-text"> {movie.runtime} min.</span>
+                <span className={styles.timeText}> {movie.runtime} min.</span>
               </p>
             </div>
           </div>
 
-          <NavLink
-            to={{
-              pathname: `${url}/cast`,
-              state: { from: location?.state?.from },
-            }}
-          >
-            <h2 className="additional-title">Actors and actresses</h2>
-          </NavLink>
-          <Route path="/movies/:movieId/cast">
-            <Cast />
-          </Route>
+          <div className={styles.wrappierDetails}>
+            <h2 className={styles.infoTitle}>More about the film:</h2>
+            <NavLink
+              to={{
+                pathname: `${url}/cast`,
+                state: { from: location?.state?.from },
+              }}
+            >
+              <h2 className={styles.additionalTitle}>Actors and actresses</h2>
+            </NavLink>
+            <Route path="/movies/:movieId/cast">
+              <Cast />
+            </Route>
 
-          <NavLink
-            to={{
-              pathname: `${url}/reviews`,
-              state: { from: location?.state?.from },
-            }}
-          >
-            <h2 className="additional-title">Reviews</h2>
-          </NavLink>
-          <Route path="/movies/:movieId/reviews">
-            <Reviews />
-          </Route>
-        </>
+            <NavLink
+              to={{
+                pathname: `${url}/reviews`,
+                state: { from: location?.state?.from },
+              }}
+            >
+              <h2 className={styles.additionalTitle}>Viewer reviews</h2>
+            </NavLink>
+            <Route path="/movies/:movieId/reviews">
+              <Reviews />
+            </Route>
+          </div>
+        </div>
       )}
     </>
   );

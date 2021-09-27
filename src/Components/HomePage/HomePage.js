@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useRouteMatch, useLocation } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
+
 import BASE_IMAGE_URL from '../../constants';
 
-import './HomePage.scss';
+import styles from './HomePage.module.scss';
 
 const HomePage = () => {
   const location = useLocation();
@@ -17,18 +18,18 @@ const HomePage = () => {
   }, []);
 
   return (
-    <ul className="list">
+    <ul className={styles.moviesList}>
       {movies.map(({ backdrop_path, title, id }) => (
-        <li key={id} className="item">
+        <li key={id} className={styles.movieItem}>
           <Link
             to={{ pathname: `${url}movies/${id}`, state: { from: location } }}
           >
             <img
               src={`${BASE_IMAGE_URL}/${backdrop_path}`}
               alt={title}
-              className="img"
+              className={styles.img}
             />
-            <p className="text">{title}</p>
+            <h2 className={styles.movieTitle}>{title}</h2>
           </Link>
         </li>
       ))}

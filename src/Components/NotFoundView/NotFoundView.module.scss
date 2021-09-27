@@ -1,0 +1,8 @@
+@import '../../sass/main.scss';
+
+.foundText {
+  margin-bottom: 10px;
+
+  @include font-data(20px, 700, $info-text-color);
+  font-style: italic;
+}

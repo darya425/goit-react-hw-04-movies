@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
+
 import NotFoundView from '../NotFoundView';
 
-import './Reviews.scss';
+import styles from './Reviews.module.scss';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -18,15 +19,15 @@ const Reviews = () => {
   return (
     <>
       {reviews.length !== 0 ? (
-        <div className="review-wrapper">
-          <ul className="review">
+        <div className={styles.reviewWrapper}>
+          <ul className={styles.review}>
             {reviews.map(({ id, author, content }) => (
-              <li key={id} className="review-item">
-                <h3 className="review-name">
+              <li key={id} className={styles.reviewItem}>
+                <h3 className={styles.reviewTitle}>
                   &#128526;
                   {author}
                 </h3>
-                <p className="review-content">{content}</p>
+                <p className={styles.reviewContent}>{content}</p>
               </li>
             ))}
           </ul>

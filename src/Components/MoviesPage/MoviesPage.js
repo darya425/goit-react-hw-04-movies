@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 import * as fetchShelMovies from '../../Services/movies-api';
+
 import BASE_IMAGE_URL from '../../constants';
-import cat from './maybe-it-is-cat.jpg';
+import cat from '../../img/maybe-it-is-cat.jpg';
 import queryString from 'query-string';
 
-import './MoviesPage.scss';
+import styles from './MoviesPage.module.scss';
 
 const MoviesPage = () => {
   const location = useLocation();
@@ -44,9 +45,9 @@ const MoviesPage = () => {
 
   return (
     <>
-      <form className="searchForm" onSubmit={handleSubmit}>
+      <form className={styles.searchForm} onSubmit={handleSubmit}>
         <input
-          className="searchForm-input"
+          className={styles.searchFormInput}
           type="text"
           value={query}
           onChange={handleChange}
@@ -55,13 +56,14 @@ const MoviesPage = () => {
           placeholder="Search movie..."
         />
 
-        <button type="submit" className="searchForm-button">
+        <button type="submit" className={styles.searchFormButton}>
           Search
         </button>
       </form>
-      <ul className="list">
+
+      <ul className={styles.moviesList}>
         {movies.map(({ poster_path, title, id }) => (
-          <li key={id} className="item">
+          <li key={id} className={styles.movieItem}>
             <Link to={{ pathname: `${url}/${id}`, state: { from: location } }}>
               <img
                 src={
@@ -70,9 +72,9 @@ const MoviesPage = () => {
                     : cat
                 }
                 alt={title}
-                className="img"
+                className={styles.img}
               />
-              <p className="text">{title}</p>
+              <h2 className={styles.movieTitle}>{title}</h2>
             </Link>
           </li>
         ))}

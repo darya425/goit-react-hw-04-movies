@@ -1,0 +1,53 @@
+// @import url('./_breakpoints.scss');
+
+@mixin screen($size) {
+  @if $size == 'sm' {
+    @media screen and (min-width: $mobile) {
+      @content;
+    }
+  }
+  @if $size == 'md' {
+    @media screen and (min-width: $tablet) {
+      @content;
+    }
+  }
+  @if $size == 'lg' {
+    @media screen and (min-width: $desktop) {
+      @content;
+    }
+  }
+}
+
+@mixin font-data($size: false, $weight: false, $colour: false) {
+  @if $size {
+    font-size: $size;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $colour {
+    color: $colour;
+  }
+}
+
+@mixin flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin flex-wrap-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@mixin flex-wrap-vert {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@mixin flex-center-vert {
+  display: flex;
+  align-items: center;
+}

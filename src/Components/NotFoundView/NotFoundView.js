@@ -1,12 +1,5 @@
-import './NotFoundView.scss';
+import styles from './NotFoundView.module.scss';
 
 export default function NotFoundView() {
-  return (
-    <h2 className="found-text">
-      К счастью, никто не высказал своего презрительного "фи", ведь люди в этом
-      фильме старались, играли, бегали и прыгали. Сейчас они где-то чилят и
-      распускают свой гонорар. И, естественно, им бы не хотелось, чтобы кто-то
-      отзывался плохо (а не дай бог, хорошо!) об их работе =)
-    </h2>
-  );
+  return <h2 className={styles.foundText}>Not found... :(</h2>;
 }

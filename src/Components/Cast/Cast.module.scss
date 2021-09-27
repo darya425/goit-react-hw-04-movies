@@ -1,0 +1,23 @@
+@import '../../sass/main.scss';
+
+.wrapperInfo {
+  margin-bottom: 20px;
+}
+.additional {
+  @include flex-wrap;
+  margin: -5px;
+  text-align: center;
+}
+
+.additionalItem {
+  width: 105px;
+  margin: 5px;
+
+  @include screen('md') {
+    width: 70px;
+  }
+}
+
+.additionalName {
+  @include font-data(12px, 500, $primary-color);
+}

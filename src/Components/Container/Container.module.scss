@@ -1,0 +1,15 @@
+@import '../../sass/main.scss';
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include screen('md') {
+    padding: 0 59px;
+  }
+
+  @include screen('lg') {
+    padding: 0 100px;
+  }
+}

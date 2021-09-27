@@ -3,8 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 
 import Container from './Components/Container';
 import AppBar from './Components/AppBar';
+import Footer from './Components/Footer';
 import NotFoundViews from './Components/NotFoundView';
-import Loader from 'react-loader-spinner';
+import Spinner from './Components/Spinner';
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
@@ -24,9 +25,7 @@ function App() {
   return (
     <Container>
       <AppBar />
-      <Suspense
-        fallback={<Loader type="Puff" color="#3a7d87" height={50} width={50} />}
-      >
+      <Suspense fallback={<Spinner />}>
         <Switch>
           <Route path="/" exact>
             <HomePage />
@@ -45,6 +44,7 @@ function App() {
           </Route>
         </Switch>
       </Suspense>
+      <Footer />
     </Container>
   );
 }

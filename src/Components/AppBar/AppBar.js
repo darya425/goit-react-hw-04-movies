@@ -1,9 +1,9 @@
 import Navigation from '../Navigation';
-import './AppBar.scss';
+import styles from './AppBar.module.scss';
 
 const AppBar = () => {
   return (
-    <header className="header">
+    <header className={styles.header}>
       <Navigation />
     </header>
   );

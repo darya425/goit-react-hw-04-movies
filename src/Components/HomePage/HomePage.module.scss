@@ -1,0 +1,47 @@
+@import '../../sass/main.scss';
+
+.moviesList {
+  @include flex-wrap-center;
+
+  margin: -8px;
+
+  @include screen('md') {
+    justify-content: start;
+  }
+}
+
+.movieItem {
+  width: 200px;
+  margin: 8px;
+
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+
+  transition: transform 250ms $timing-function;
+
+  @include screen('lg') {
+    width: 230px;
+  }
+
+  &:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+}
+
+.img {
+  width: 230px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.movieTitle {
+  height: 66px;
+  padding: 10px;
+  text-align: center;
+
+  @include font-data(16px, 600, $white-color);
+
+  background-color: $primary-color;
+}

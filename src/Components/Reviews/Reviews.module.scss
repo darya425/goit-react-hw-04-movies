@@ -1,0 +1,15 @@
+@import '../../sass/main.scss';
+
+.reviewItem {
+  margin-bottom: 15px;
+}
+
+.reviewTitle {
+  margin-bottom: 10px;
+
+  @include font-data(16px, 600, $primary-color);
+}
+
+.reviewContent {
+  @include font-data(16px, 400, $info-text-color);
+}

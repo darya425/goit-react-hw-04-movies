@@ -1,0 +1,155 @@
+@import '../../sass/main.scss';
+
+.wrapper {
+  padding: 20px;
+  background-color: $white-color;
+}
+
+.wrapperMovieDetails {
+  @include flex-wrap;
+
+  margin-bottom: 20px;
+
+  @include screen('md') {
+    flex-wrap: nowrap;
+  }
+}
+
+.detailsImg {
+  margin-bottom: 10px;
+  object-fit: cover;
+
+  @include screen('md') {
+    width: 300px;
+    margin-right: 30px;
+  }
+}
+
+.infoTitle {
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+
+  @include font-data(16px, 600, $white-color);
+
+  border-radius: 5px;
+  background-color: $primary-color;
+
+  @include screen('lg') {
+    font-size: 25px;
+    padding: 20px;
+  }
+}
+
+.detailsInfo {
+  @include flex-wrap;
+
+  margin-bottom: 20px;
+
+  @include font-data(22px, 700, $primary-color);
+
+  @include screen('md') {
+    display: block;
+    flex-wrap: nowrap;
+  }
+
+  @include screen('lg') {
+    font-size: 25px;
+  }
+}
+
+.detailsText {
+  @include font-data(19px, 700, $info-text-color);
+}
+
+.infoText {
+  margin-bottom: 20px;
+  font-size: 17px;
+
+  @include screen('lg') {
+    font-size: 20px;
+  }
+}
+
+.genresWrapper {
+  @include flex-wrap;
+
+  margin-bottom: 20px;
+}
+
+.genresTitle {
+  margin-right: 10px;
+
+  @include font-data(20px, 700, $primary-color);
+
+  @include screen('lg') {
+    font-size: 25px;
+  }
+}
+
+.genres {
+  @include flex-wrap;
+
+  @include screen('lg') {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+}
+
+.genresItem {
+  font-size: 17px;
+
+  @include screen('lg') {
+    font-size: 20px;
+  }
+}
+
+.genresTime {
+  margin-right: 10px;
+
+  @include font-data(20px, 700, $primary-color);
+
+  @include screen('lg') {
+    font-size: 25px;
+  }
+}
+
+.timeText {
+  @include font-data(20px, 400, $black-color);
+}
+
+.additionalTitle {
+  margin-bottom: 20px;
+
+  @include font-data(20px, 700, $primary-color);
+
+  text-transform: uppercase;
+
+  transition: color 250ms $timing-function;
+
+  &:hover {
+    color: $secondary-color;
+  }
+
+  @include screen('lg') {
+    font-size: 25px;
+  }
+}
+
+.btn {
+  width: 100px;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  @include font-data(20px, 400, $white-color);
+
+  background-color: $secondary-color;
+  border: none;
+  border-radius: 3px;
+
+  transition: background-color 250ms $timing-function;
+
+  &:hover {
+    background-color: $primary-color;
+  }
+}
