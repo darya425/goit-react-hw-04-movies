@@ -1,6 +1,6 @@
 # movies-description-finder
 
-Own pet project to search movies.
+Own project to search movies.
 
 ## Created using
 
